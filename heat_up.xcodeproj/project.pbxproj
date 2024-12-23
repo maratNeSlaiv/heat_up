@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0AD01B2F2D1511CB001B0DAE /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0AD01B2E2D1511CB001B0DAE /* Localizable.xcstrings */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		0A1835DE2CF2FE1A00E034C3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		0A1835CB2CF2FE1800E034C3 /* heat_up.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = heat_up.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A1835DD2CF2FE1A00E034C3 /* heat_upTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = heat_upTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A1835E72CF2FE1B00E034C3 /* heat_upUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = heat_upUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AD01B2E2D1511CB001B0DAE /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		0A1835C22CF2FE1800E034C3 = {
 			isa = PBXGroup;
 			children = (
+				0AD01B2E2D1511CB001B0DAE /* Localizable.xcstrings */,
 				0A1835CD2CF2FE1800E034C3 /* heat_up */,
 				0A1835E02CF2FE1A00E034C3 /* heat_upTests */,
 				0A1835EA2CF2FE1B00E034C3 /* heat_upUITests */,
@@ -191,6 +197,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
 				Base,
 			);
 			mainGroup = 0A1835C22CF2FE1800E034C3;
@@ -212,6 +219,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AD01B2F2D1511CB001B0DAE /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +336,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -384,6 +393,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -395,7 +405,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"heat_up/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"heat_up/Resources/Preview Content\"";
+				DEVELOPMENT_TEAM = S6J52SHHNR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -423,7 +434,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"heat_up/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"heat_up/Resources/Preview Content\"";
+				DEVELOPMENT_TEAM = S6J52SHHNR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
