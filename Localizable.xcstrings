@@ -1,13 +1,37 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    "%lld%%" : {
+
+    },
+    "Are you sure you want to delete the document with ID: %@?" : {
+
+    },
+    "Author: %@" : {
+
+    },
+    "Confirm Deletion" : {
+
+    },
+    "Created At: %@" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Documents" : {
+
+    },
+    "Enter Title" : {
+
+    },
+    "File ID: %@" : {
+
+    },
     "Get your muscles" : {
-
-    },
-    "Heat Up" : {
-
-    },
-    "Hello" : {
 
     },
     "Log In" : {
@@ -62,6 +86,7 @@
       }
     },
     "login_passwordPlaceholder" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -92,9 +117,6 @@
           }
         }
       }
-    },
-    "Marat" : {
-
     },
     "resetPassword_email" : {
       "extractionState" : "manual",
@@ -247,6 +269,7 @@
       }
     },
     "setNewPassword_confirmPasswordPlaceholder" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -261,6 +284,9 @@
           }
         }
       }
+    },
+    "setNewPassword_confirmPasswordPrompt" : {
+
     },
     "setNewPassword_instruction" : {
       "localizations" : {
@@ -279,6 +305,7 @@
       }
     },
     "setNewPassword_newPasswordPlaceholder" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -293,6 +320,9 @@
           }
         }
       }
+    },
+    "setNewPassword_newPasswordPrompt" : {
+
     },
     "setNewPassword_passwordMismatch" : {
       "localizations" : {
@@ -327,6 +357,7 @@
       }
     },
     "setNewPassword_title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -554,6 +585,7 @@
       }
     },
     "signUp_passwordPlaceholder" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -664,6 +696,12 @@
           }
         }
       }
+    },
+    "TODO: Implement OTP confirmation logic" : {
+
+    },
+    "Uploading file..." : {
+
     }
   },
   "version" : "1.0"

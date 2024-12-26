@@ -1,44 +1,33 @@
-//
-//  MainPage.swift
-//  heat_up
-//
-//  Created by marat orozaliev on 21/12/2024.
-//
-
 import SwiftUI
 
 struct MainPageView: View {
-    
     var body: some View {
-        ZStack {
-            Color.white // Black background for the whole body
-                .ignoresSafeArea() // Ensures the background extends to the entire screen
-            
-            VStack{
+        NavigationView {
+            ZStack{
+                Color.black // Black background for the whole body
+                    .ignoresSafeArea() // Ensures the background extends to the entire screen
                 
-                HStack {
-                    Text(String("\u{1F525}"))// Unicode for 🔥
-                        .font(.system(size: 24))
-                    Spacer() // Pushes the text to the right
+                VStack{
+                    NavigationLink(destination: DocumentsView()) {
+                        Image(systemName: "folder.fill") // The folder icon
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 50, height: 50) // Adjust the size
+                            .foregroundColor(.green) // Set color
+                    }
+                    .buttonStyle(PlainButtonStyle()) // Make the link behave like a button
                     
-                    
-                    Text("Heat Up")
+                    Text("Documents")
+                        .font(.title)
                         .foregroundStyle(.white)
-                        .bold()
-                        .font(.system(size: 12))
-                        .padding(.trailing, 20)
                 }
-                Spacer()
-                
-                Text("Marat")
-                    .foregroundColor(.white) // White text for contrast
-                    .font(.largeTitle)
+                .padding()
             }
         }
     }
 }
 
-struct MainPageView_Preview: PreviewProvider {
+struct MainPageView_Previews: PreviewProvider {
     static var previews: some View {
         MainPageView()
     }
