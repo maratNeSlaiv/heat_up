@@ -13,6 +13,18 @@ class MealViewModel: ObservableObject {
     
     private let baseUrl = "https://www.themealdb.com/api/json/v1/1/"
     
+    // Function to fetch meals by category
+    func fetchMealsByCategory(category: String) {
+        let urlString = "\(baseUrl)filter.php?c=\(category)"
+        fetchData(from: urlString)
+    }
+    
+    // Function to fetch meals by area
+    func fetchMealsByArea(area: String) {
+        let urlString = "\(baseUrl)filter.php?a=\(area)"
+        fetchData(from: urlString)
+    }
+    
     // Function to fetch meals by first letter
     func fetchMealsByLetter(letter: String) {
         let urlString = "\(baseUrl)search.php?f=\(letter)"
@@ -20,13 +32,13 @@ class MealViewModel: ObservableObject {
     }
     
     // Function to search meal by name
-    func searchMealByName(name: String) {
+    func fetchMealByName(name: String) {
         let urlString = "\(baseUrl)search.php?s=\(name)"
         fetchData(from: urlString)
     }
     
     // Function to lookup full meal details by id
-    func lookupMealById(id: String) {
+    func fetchMealById(id: String) {
         let urlString = "\(baseUrl)lookup.php?i=\(id)"
         fetchData(from: urlString)
     }

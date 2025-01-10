@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ProductCategoryScrollView: View {
+struct ProductCategoryView: View {
     let categories = [
         "starter",
         "chicken",
@@ -45,7 +45,7 @@ struct ProductCategoryScrollView: View {
 
 struct ProductCategoryScrollView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductCategoryScrollView()
+        ProductCategoryView()
     }
 }
 

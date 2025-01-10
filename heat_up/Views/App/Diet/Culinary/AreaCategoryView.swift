@@ -15,13 +15,21 @@ struct AreaCategoryView: View {
     var body: some View {
         let gridItems = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
         
-        ScrollView {
-            LazyVGrid(columns: gridItems, spacing: 10) {
-                ForEach(countries, id: \.self) { country in
-                    CountryFlagIconView(country: country)
+        NavigationView {
+            ScrollView {
+                LazyVGrid(columns: gridItems, spacing: 10) {
+                    ForEach(countries, id: \.self) { country in
+                        NavigationLink(destination: MealDisplayView(fetchMealsAction: { viewModel in
+                            viewModel.fetchMealsByArea(area: country)
+                        })) {
+                            CountryFlagIconView(country: country)
+                        }
+                        .buttonStyle(ZoomButtonStyle())
+                    }
                 }
+                .padding()
             }
-            .padding()
+            .navigationTitle("Area Categories")
         }
     }
 }
@@ -34,7 +42,7 @@ struct CountryFlagIconView: View {
             Text(country.capitalized)
                 .font(.subheadline)
             
-            Image("country_flags_\(country)") // Make sure to add the images with the correct names in your assets
+            Image("country_flags_\(country)") // Ensure images are available in Assets
                 .resizable()
                 .scaledToFit()
                 .frame(width: 50, height: 50)

@@ -4,7 +4,26 @@
     "" : {
 
     },
+    "-" : {
+
+    },
+    "%lld kg" : {
+
+    },
+    "%lld/%lld cups" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld cups"
+          }
+        }
+      }
+    },
     "%lld%%" : {
+
+    },
+    "+" : {
 
     },
     "Address" : {
@@ -14,6 +33,9 @@
 
     },
     "Are you sure you want to delete the document with ID: %@?" : {
+
+    },
+    "Area Categories" : {
 
     },
     "Author: %@" : {
@@ -37,13 +59,16 @@
     "Delete" : {
 
     },
-    "Diet Screen" : {
+    "Diet" : {
 
     },
     "Documents" : {
 
     },
     "Door Number" : {
+
+    },
+    "Drunk Water Cups" : {
 
     },
     "Enter Title" : {
@@ -55,10 +80,19 @@
     "File ID: %@" : {
 
     },
+    "Filter by:" : {
+
+    },
+    "Find Meals" : {
+
+    },
     "Floor" : {
 
     },
     "Get your muscles" : {
+
+    },
+    "Goal Reached!" : {
 
     },
     "Goals & Preferences" : {
@@ -68,6 +102,9 @@
 
     },
     "Instructions:" : {
+
+    },
+    "Loading meals..." : {
 
     },
     "Loading..." : {
@@ -157,6 +194,9 @@
         }
       }
     },
+    "Meals" : {
+
+    },
     "No ingredients found" : {
 
     },
@@ -164,6 +204,9 @@
 
     },
     "Origin: %@" : {
+
+    },
+    "Personal Info" : {
 
     },
     "Physical Information" : {
@@ -429,6 +472,9 @@
           }
         }
       }
+    },
+    "Settings" : {
+
     },
     "Sign Up" : {
 
@@ -766,7 +812,16 @@
     "Watch on YouTube" : {
 
     },
+    "Weight (kg)" : {
+
+    },
     "Workout Screen" : {
+
+    },
+    "Вы подключены к сети" : {
+
+    },
+    "Соединение потеряно" : {
 
     },
     "Этаж: %@ | Номер двери: %@" : {

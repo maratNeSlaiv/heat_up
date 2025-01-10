@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MealView: View {
+struct MealRecipeView: View {
     @StateObject private var viewModel = MealViewModel()
     let idMeal: String
     
@@ -108,17 +108,17 @@ struct MealView: View {
                 // Show loading indicator
                 ProgressView()
                     .onAppear {
-                        viewModel.lookupMealById(id: idMeal)
+                        viewModel.fetchMealById(id: idMeal)
                     }
             }
         }
     }
 }
 
-struct MealView_Previews: PreviewProvider {
+struct MealRecipeView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            MealView(idMeal: "52995")
+            MealRecipeView(idMeal: "53049")
         }
     }
 }

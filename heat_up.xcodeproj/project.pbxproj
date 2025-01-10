@@ -46,22 +46,9 @@
 		EB2B50CBD215C0539DDBF63D /* Pods_heat_up.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_heat_up.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0ABAABFE2D2CF43400CA2472 /* Exceptions for "heat_up" folder in "heat_up" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"heat-up-Info.plist",
-			);
-			target = 0A1835CA2CF2FE1800E034C3 /* heat_up */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0A1835CD2CF2FE1800E034C3 /* heat_up */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				0ABAABFE2D2CF43400CA2472 /* Exceptions for "heat_up" folder in "heat_up" target */,
-			);
 			path = heat_up;
 			sourceTree = "<group>";
 		};

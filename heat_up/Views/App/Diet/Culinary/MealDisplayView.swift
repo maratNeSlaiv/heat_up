@@ -14,7 +14,7 @@ struct MealIconView: View {
     var size: CGFloat = 175 // Default size
     
     var body: some View {
-        NavigationLink(destination: MealView(idMeal: idMeal)) {
+        NavigationLink(destination: MealRecipeView(idMeal: idMeal)) {
             VStack {
                 // Name of the meal with dynamic font size
                 Text(strMeal)
@@ -60,6 +60,8 @@ struct MealDisplayView: View {
         GridItem(.adaptive(minimum: 150)),
         GridItem(.adaptive(minimum: 150))
     ]
+
+    var fetchMealsAction: (_ viewModel: MealViewModel) -> Void
     
     var body: some View {
         NavigationView {
@@ -92,7 +94,7 @@ struct MealDisplayView: View {
             }
             .onAppear {
                 // Trigger fetch on view appearance
-                viewModel.fetchMealsByLetter(letter: "b")
+                fetchMealsAction(viewModel)
             }
             .navigationTitle("Meals")
         }
@@ -101,7 +103,9 @@ struct MealDisplayView: View {
 
 struct MealDisplayView_Previews: PreviewProvider {
     static var previews: some View {
-        MealDisplayView()
+        MealDisplayView(fetchMealsAction: { viewModel in
+            viewModel.fetchMealsByCategory(category: "Vegetarian")
+        })
             .previewDevice("iPhone 14")
     }
 }
