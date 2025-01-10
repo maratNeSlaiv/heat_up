@@ -26,7 +26,3 @@ class Store: Decodable {
         self.workingHours = workingHours
     }
 }
-
-struct CountriesAndCities: Decodable{
-    var countries: [String: [String]] = [:]
-}

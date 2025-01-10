@@ -171,7 +171,7 @@ struct SignUpView: View {
                                 invalidPassword = false
                             }
                         } else {
-                            NetworkManager.registerUser(email: email, password: password) { success, errorMessage in
+                            AppNetworkManager.registerUser(email: email, password: password) { success, errorMessage in
                                 DispatchQueue.main.async {
                                     if success {
                                         navigateToConfirmationPage = true

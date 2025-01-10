@@ -53,4 +53,37 @@ class ShopNetworkManager {
         // Запуск задачи
         task.resume()
     }
+    
+    
+//    static func fetchSupportedCountriesAndCities(completion: @escaping (Result<[String: [String]], Error>) -> Void) {
+//        // Define the API endpoint
+//        guard let url = URL(string: "http://127.0.0.1:8000/shop/supported_cities") else {
+//            completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
+//            return
+//        }
+//        
+//        // Create a data task
+//        URLSession.shared.dataTask(with: url) { data, response, error in
+//            // Handle errors
+//            if let error = error {
+//                completion(.failure(error))
+//                return
+//            }
+//            
+//            // Ensure we have data
+//            guard let data = data else {
+//                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "No data received"])))
+//                return
+//            }
+//            
+//            // Decode the JSON response
+//            do {
+//                let decoder = JSONDecoder()
+//                let result = try decoder.decode(CountriesAndCities.self, from: data)
+//                completion(.success(result.countries))
+//            } catch {
+//                completion(.failure(error))
+//            }
+//        }.resume()
+//    }
 }

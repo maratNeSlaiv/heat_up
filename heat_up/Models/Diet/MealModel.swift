@@ -4,42 +4,44 @@
 //
 //  Created by marat orozaliev on 10/1/2025.
 //
+
 import Foundation
 
-struct Meal: Decodable{
+struct Meal: Decodable {
+    let idMeal: String
     let strMeal: String
-    let strCategory: String
-    let strArea: String
-    let strInstructions: String
     let strMealThumb: String
-    let strYoutube: String
+    
+    let strCategory: String?
+    let strArea: String?
+    let strInstructions: String?
+    let strYoutube: String?
+    
     let strIngredients: [String?]
     let strMeasures: [String?]
-    
-    func getIngredients() -> [String]? {
+
+    func getIngredients() -> [String] {
+        // Filter out empty or nil ingredients
         let filteredIngredients = strIngredients.compactMap { $0?.isEmpty == false ? $0 : nil }
-        
+        // Filter out empty or nil measures
         let filteredMeasures = strMeasures.compactMap { $0?.isEmpty == false ? $0 : nil }
         
-        // Ensure both arrays have the same length after filtering
-        guard filteredIngredients.count == filteredMeasures.count else { return nil }
-        
-        // Combine ingredients and measures into formatted strings
+        // Combine ingredients and measures, using a default string for missing measures
         var result: [String] = []
-        for (ingredient, measure) in zip(filteredIngredients, filteredMeasures) {
-            result.append("\(measure) \(ingredient)")
+        for (index, ingredient) in filteredIngredients.enumerated() {
+            let measure = index < filteredMeasures.count ? filteredMeasures[index] : "" // Use empty string if no measure
+            result.append(measure.isEmpty ? ingredient : "\(measure) \(ingredient)")
         }
         
-        // Return the result, or nil if the result is empty
-        return result.isEmpty ? nil : result
+        return result
     }
 }
 
-func parseMealsWithDescription(from jsonData: Data) -> [Meal]? {
+func parseMeals(from jsonData: Data) -> [Meal]? {
     struct ServerResponse: Decodable {
         let meals: [RawMeal]
     }
-    
+
     struct RawMeal: Decodable {
         let idMeal: String
         let strMeal: String
@@ -48,6 +50,8 @@ func parseMealsWithDescription(from jsonData: Data) -> [Meal]? {
         let strCategory: String?
         let strArea: String?
         let strYoutube: String?
+        
+        // Ingredients and measures
         let strIngredient1: String?
         let strIngredient2: String?
         let strIngredient3: String?
@@ -68,6 +72,7 @@ func parseMealsWithDescription(from jsonData: Data) -> [Meal]? {
         let strIngredient18: String?
         let strIngredient19: String?
         let strIngredient20: String?
+        
         let strMeasure1: String?
         let strMeasure2: String?
         let strMeasure3: String?
@@ -100,7 +105,7 @@ func parseMealsWithDescription(from jsonData: Data) -> [Meal]? {
                 rawMeal.strIngredient13, rawMeal.strIngredient14, rawMeal.strIngredient15, rawMeal.strIngredient16,
                 rawMeal.strIngredient17, rawMeal.strIngredient18, rawMeal.strIngredient19, rawMeal.strIngredient20
             ].compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false ? $0 : nil }
-            
+
             let measures = [
                 rawMeal.strMeasure1, rawMeal.strMeasure2, rawMeal.strMeasure3, rawMeal.strMeasure4,
                 rawMeal.strMeasure5, rawMeal.strMeasure6, rawMeal.strMeasure7, rawMeal.strMeasure8,
@@ -108,16 +113,26 @@ func parseMealsWithDescription(from jsonData: Data) -> [Meal]? {
                 rawMeal.strMeasure13, rawMeal.strMeasure14, rawMeal.strMeasure15, rawMeal.strMeasure16,
                 rawMeal.strMeasure17, rawMeal.strMeasure18, rawMeal.strMeasure19, rawMeal.strMeasure20
             ].compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false ? $0 : nil }
-            
+
+            // Ensure that the number of ingredients and measures align
+            let maxCount = max(ingredients.count, measures.count)
+            let alignedIngredients = ingredients + Array(repeating: "", count: maxCount - ingredients.count) // Fills missing ingredients with empty strings
+            let alignedMeasures = measures + Array(repeating: "", count: maxCount - measures.count) // Fills missing measures with empty strings
+
+            let ingredientMeasurePairs = zip(alignedIngredients, alignedMeasures).map { ingredient, measure in
+                (ingredient, measure)
+            }
+
             return Meal(
+                idMeal: rawMeal.idMeal,
                 strMeal: rawMeal.strMeal,
+                strMealThumb: rawMeal.strMealThumb,
                 strCategory: rawMeal.strCategory,
                 strArea: rawMeal.strArea,
                 strInstructions: rawMeal.strInstructions,
-                strMealThumb: rawMeal.strMealThumb,
                 strYoutube: rawMeal.strYoutube,
-                strIngredients: ingredients,
-                strMeasures: measures
+                strIngredients: ingredientMeasurePairs.map { $0.0 }, // Only ingredients
+                strMeasures: ingredientMeasurePairs.map { $0.1 } // Corresponding measures
             )
         }
     } catch {

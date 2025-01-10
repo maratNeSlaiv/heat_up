@@ -7,10 +7,25 @@
     "%lld%%" : {
 
     },
+    "Address" : {
+
+    },
+    "Address Information" : {
+
+    },
     "Are you sure you want to delete the document with ID: %@?" : {
 
     },
     "Author: %@" : {
+
+    },
+    "Basic Information" : {
+
+    },
+    "Categories" : {
+
+    },
+    "Category: %@" : {
 
     },
     "Confirm Deletion" : {
@@ -22,16 +37,40 @@
     "Delete" : {
 
     },
+    "Diet Screen" : {
+
+    },
     "Documents" : {
+
+    },
+    "Door Number" : {
 
     },
     "Enter Title" : {
 
     },
+    "Failed to load profile" : {
+
+    },
     "File ID: %@" : {
 
     },
+    "Floor" : {
+
+    },
     "Get your muscles" : {
+
+    },
+    "Goals & Preferences" : {
+
+    },
+    "Ingredients:" : {
+
+    },
+    "Instructions:" : {
+
+    },
+    "Loading..." : {
 
     },
     "Log In" : {
@@ -117,6 +156,18 @@
           }
         }
       }
+    },
+    "No ingredients found" : {
+
+    },
+    "Not Provided" : {
+
+    },
+    "Origin: %@" : {
+
+    },
+    "Physical Information" : {
+
     },
     "resetPassword_email" : {
       "extractionState" : "manual",
@@ -267,6 +318,12 @@
           }
         }
       }
+    },
+    "Save Changes" : {
+
+    },
+    "Search..." : {
+
     },
     "setNewPassword_confirmPasswordPlaceholder" : {
       "extractionState" : "stale",
@@ -700,8 +757,27 @@
     "TODO: Implement OTP confirmation logic" : {
 
     },
+    "Try Again" : {
+
+    },
     "Uploading file..." : {
 
+    },
+    "Watch on YouTube" : {
+
+    },
+    "Workout Screen" : {
+
+    },
+    "Этаж: %@ | Номер двери: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Этаж: %1$@ | Номер двери: %2$@"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

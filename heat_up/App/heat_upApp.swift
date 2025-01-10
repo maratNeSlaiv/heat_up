@@ -4,7 +4,7 @@ import SwiftUI
 struct heat_upApp: App {
     var body: some Scene {
         WindowGroup {
-            DocumentsView()
+            MealView(idMeal: "53022")
         }
     }
 }

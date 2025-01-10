@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-heat_up/Pods-heat_up-resources.sh
+${PODS_CONFIGURATION_BUILD_DIR}/GoogleMaps/GoogleMapsResources.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/GooglePlaces/GooglePlacesResources.bundle

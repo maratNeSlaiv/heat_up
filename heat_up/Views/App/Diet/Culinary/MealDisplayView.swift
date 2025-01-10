@@ -8,21 +8,23 @@
 import SwiftUI
 
 struct MealIconView: View {
-    let meal: Meal
+    let idMeal: String
+    let strMeal: String
+    let strMealThumb: String
     var size: CGFloat = 175 // Default size
     
     var body: some View {
-        NavigationLink(destination: MealView(meal: meal)) {
+        NavigationLink(destination: MealView(idMeal: idMeal)) {
             VStack {
                 // Name of the meal with dynamic font size
-                Text(meal.strMeal)
+                Text(strMeal)
                     .font(.system(size: size * 0.09)) // Scale font size based on 'size'
                     .padding(.top, 10)
                     .foregroundColor(.white)
                     .shadow(radius: 5)
                 
                 // Image of the meal
-                AsyncImage(url: URL(string: meal.strMealThumb)) { image in
+                AsyncImage(url: URL(string: strMealThumb)) { image in
                     image
                         .resizable()
                         .scaledToFill()
@@ -55,8 +57,8 @@ struct MealDisplayView: View {
     @StateObject private var viewModel = MealViewModel()
     
     let columns = [
-        GridItem(.flexible()), // Column 1
-        GridItem(.flexible())  // Column 2
+        GridItem(.adaptive(minimum: 150)),
+        GridItem(.adaptive(minimum: 150))
     ]
     
     var body: some View {
@@ -73,8 +75,12 @@ struct MealDisplayView: View {
                 if !viewModel.meals.isEmpty {
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 20) {
-                            ForEach(viewModel.meals, id: \.strMeal) { meal in
-                                MealIconView(meal: meal) // Use MealIconView for each meal
+                            ForEach(viewModel.meals, id: \.idMeal) { meal in
+                                MealIconView(
+                                    idMeal: meal.idMeal,
+                                    strMeal: meal.strMeal,
+                                    strMealThumb: meal.strMealThumb
+                                )
                             }
                         }
                         .padding()
@@ -86,7 +92,7 @@ struct MealDisplayView: View {
             }
             .onAppear {
                 // Trigger fetch on view appearance
-                viewModel.fetchMeals()
+                viewModel.fetchMealsByLetter(letter: "b")
             }
             .navigationTitle("Meals")
         }
