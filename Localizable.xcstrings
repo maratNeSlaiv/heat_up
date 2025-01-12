@@ -7,8 +7,34 @@
     "-" : {
 
     },
+    "%.1fg" : {
+
+    },
+    "%@: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: %2$@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+
+    },
     "%lld kg" : {
 
+    },
+    "%lld/%lld calories" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld calories"
+          }
+        }
+      }
     },
     "%lld/%lld cups" : {
       "localizations" : {
@@ -16,6 +42,16 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "%1$lld/%2$lld cups"
+          }
+        }
+      }
+    },
+    "%lld/%lld grams" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld grams"
           }
         }
       }
@@ -41,7 +77,19 @@
     "Author: %@" : {
 
     },
+    "Barcode Scanned" : {
+
+    },
     "Basic Information" : {
+
+    },
+    "Calories Intake" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Carbs Intake" : {
 
     },
     "Categories" : {
@@ -54,6 +102,9 @@
 
     },
     "Created At: %@" : {
+
+    },
+    "Decoded Value: %@" : {
 
     },
     "Delete" : {
@@ -74,7 +125,13 @@
     "Enter Title" : {
 
     },
+    "Error: %@" : {
+
+    },
     "Failed to load profile" : {
+
+    },
+    "Fat Intake" : {
 
     },
     "File ID: %@" : {
@@ -203,6 +260,18 @@
     "Not Provided" : {
 
     },
+    "Nutriscore Grade: %@" : {
+
+    },
+    "Nutriscore Score: %lf" : {
+
+    },
+    "Nutritional Intake Tracker" : {
+
+    },
+    "OK" : {
+
+    },
     "Origin: %@" : {
 
     },
@@ -210,6 +279,12 @@
 
     },
     "Physical Information" : {
+
+    },
+    "Product not found." : {
+
+    },
+    "Protein Intake" : {
 
     },
     "resetPassword_email" : {
@@ -800,6 +875,9 @@
         }
       }
     },
+    "Start Scanning" : {
+
+    },
     "TODO: Implement OTP confirmation logic" : {
 
     },
@@ -816,12 +894,6 @@
 
     },
     "Workout Screen" : {
-
-    },
-    "Вы подключены к сети" : {
-
-    },
-    "Соединение потеряно" : {
 
     },
     "Этаж: %@ | Номер двери: %@" : {

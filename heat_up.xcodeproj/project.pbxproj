@@ -517,6 +517,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "heat-up-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to the camera to scan barcodes.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location to show you the nearest places even when the app is in the background.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show you the nearest places.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -548,6 +551,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "heat-up-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to the camera to scan barcodes.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location to show you the nearest places even when the app is in the background.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show you the nearest places.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

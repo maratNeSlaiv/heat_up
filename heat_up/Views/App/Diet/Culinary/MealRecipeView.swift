@@ -80,21 +80,23 @@ struct MealRecipeView: View {
                         }
                         
                         // YouTube Button
-                        Button(action: {
-                            if let url = URL(string: meal.strYoutube ?? "Youtube link failed to load") {
-                                UIApplication.shared.open(url)
+                        if let youtubeLink = meal.strYoutube, !youtubeLink.trimmingCharacters(in: .whitespaces).isEmpty {
+                            Button(action: {
+                                if let url = URL(string: youtubeLink) {
+                                    UIApplication.shared.open(url)
+                                }
+                            }) {
+                                HStack {
+                                    Image(systemName: "play.circle")
+                                    Text("Watch on YouTube")
+                                        .fontWeight(.bold)
+                                }
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.red)
+                                .cornerRadius(8)
                             }
-                        }) {
-                            HStack {
-                                Image(systemName: "play.circle")
-                                Text("Watch on YouTube")
-                                    .fontWeight(.bold)
-                            }
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.red)
-                            .cornerRadius(8)
                         }
                     }
                     .padding()

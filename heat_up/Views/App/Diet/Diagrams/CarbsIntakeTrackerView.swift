@@ -1,19 +1,14 @@
-//
-//  CarbsIntakeView.swift
-//  heat_up
-//
-//  Created by marat orozaliev on 11/1/2025.
-//
-
 import SwiftUI
 
 struct CarbsIntakeTrackerView: View {
     @State private var gramsConsumed = 0
     @State private var lastResetDate = Date()
-    @State private var weight: Double = UserDefaults.standard.double(forKey: "CarbsTracker_userWeight") // Load weight from UserDefaults
+    @State private var weight: Double = UserDefaults.standard.double(forKey: "userWeight") // Load weight from UserDefaults
     @State private var adjustmentValue = UserDefaults.standard.integer(forKey: "CarbsTracker_adjustmentValue") // Load adjustment value from UserDefaults
     
     let adjustmentOptions = [1, 3, 5, 10, 20]
+    
+    let size: CGFloat // Customizable size parameter
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -31,43 +26,57 @@ struct CarbsIntakeTrackerView: View {
         return min(Double(gramsConsumed) / Double(goalGrams), 1.0)
     }
     
+    var intakeColor: Color {
+        let ratio = Double(gramsConsumed) / Double(goalGrams)
+        
+        switch ratio {
+        case ..<0.6:
+            return .gray
+        case 0.6..<0.75, 1.25...:
+            return .red
+        case 0.75..<0.9, 1.1..<1.25:
+            return .orange
+        case 0.9..<1.1:
+            return .green
+        default:
+            return .gray
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
-                Text("Carbohydrate Intake")
-                    .font(.title)
-                    .padding()
-                    .foregroundColor(.orange)
+                Text("Carbs Intake")
+                    .font(.system(size: size * 0.13)) // Adjust title font size
 
                 ZStack {
                     Circle()
-                        .stroke(lineWidth: 20)
+                        .stroke(lineWidth: size * 0.1)
                         .opacity(0.3)
-                        .foregroundColor(.blue)
+                        .foregroundColor(intakeColor)
 
                     Circle()
                         .trim(from: 0.0, to: progress)
-                        .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
-                        .foregroundColor(.orange)
+                        .stroke(style: StrokeStyle(lineWidth: size * 0.1, lineCap: .round, lineJoin: .round))
+                        .foregroundColor(intakeColor)
                         .rotationEffect(Angle(degrees: -90))
                         .animation(.easeInOut, value: progress)
 
-                    VStack {
+                    VStack(spacing: size * 0.02) {
                         Text("\(gramsConsumed)/\(goalGrams) grams")
-                            .font(.title2)
+                            .font(.system(size: size * 0.1))
                             .bold()
-                            .foregroundColor(.blue)
-                        if gramsConsumed >= goalGrams {
+                        if gramsConsumed >= goalGrams && intakeColor == .green{
                             Text("Goal Reached!")
-                                .font(.subheadline)
-                                .foregroundColor(.orange)
+                                .font(.system(size: size * 0.08))
+                                .foregroundColor(.green)
                         }
                     }
                 }
-                .frame(width: 200, height: 200)
-                .padding()
+                .frame(width: size, height: size)
+                .padding(size * 0.05)
 
-                HStack {
+                HStack(spacing: size * 0.05) { // Adjust button spacing
                     Button(action: {
                         if gramsConsumed >= adjustmentValue {
                             gramsConsumed -= adjustmentValue
@@ -75,9 +84,9 @@ struct CarbsIntakeTrackerView: View {
                         }
                     }) {
                         Text("-")
-                            .font(.largeTitle)
-                            .padding()
-                            .background(Color.blue)
+                            .font(.system(size: size * 0.2)) // Adjust font size
+                            .frame(width: size * 0.3, height: size * 0.3) // Adjust button size
+                            .background(Color.green)
                             .foregroundColor(.white)
                             .clipShape(Circle())
                     }
@@ -86,12 +95,11 @@ struct CarbsIntakeTrackerView: View {
                         cycleAdjustmentValue()
                     }) {
                         Text("\(adjustmentValue)")
-                            .font(.headline)
-                            .padding()
-                            .background(Color.purple)
+                            .font(.system(size: size * 0.1)) // Adjust font size
+                            .padding(size * 0.05) // Adjust internal padding
+                            .background(Color.orange)
                             .foregroundColor(.white)
                             .clipShape(Capsule())
-                            .padding(.horizontal, 10)
                     }
                     
                     Button(action: {
@@ -99,14 +107,14 @@ struct CarbsIntakeTrackerView: View {
                         saveData()
                     }) {
                         Text("+")
-                            .font(.largeTitle)
-                            .padding()
-                            .background(Color.orange)
+                            .font(.system(size: size * 0.2)) // Adjust font size
+                            .frame(width: size * 0.3, height: size * 0.3) // Adjust button size
+                            .background(Color.blue)
                             .foregroundColor(.white)
                             .clipShape(Circle())
                     }
                 }
-                .padding()
+                .padding(size * 0.05) // Adjust HStack padding
             }
             .onAppear(perform: onAppearActions)
         }
@@ -146,7 +154,7 @@ struct CarbsIntakeTrackerView: View {
     }
     
     func loadWeight() {
-        if let savedWeight = UserDefaults.standard.value(forKey: "CarbsTracker_userWeight") as? Double, savedWeight > 0 {
+        if let savedWeight = UserDefaults.standard.value(forKey: "userWeight") as? Double, savedWeight > 0 {
             weight = savedWeight
         } else {
             weight = 70 // Default weight of 70kg if not set
@@ -179,6 +187,6 @@ struct CarbsIntakeTrackerView: View {
 
 struct CarbsIntakeTrackerView_Previews: PreviewProvider {
     static var previews: some View {
-        CarbsIntakeTrackerView()
+        CarbsIntakeTrackerView(size: 150) // Pass custom size
     }
 }

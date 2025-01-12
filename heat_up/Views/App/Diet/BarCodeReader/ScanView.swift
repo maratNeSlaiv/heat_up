@@ -54,3 +54,16 @@ struct ScanView: View {
         }
     }
 }
+
+struct ScanButtonView: View {
+    @State private var isScanning = false
+
+    var body: some View {
+        Button("Start Scanning") {
+            isScanning = true
+        }
+        .sheet(isPresented: $isScanning) {
+            ScanView()
+        }
+    }
+}
