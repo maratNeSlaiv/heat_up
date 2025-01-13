@@ -17,8 +17,6 @@ class CommodityViewModel: ObservableObject {
         let urlString = "https://world.openfoodfacts.org/api/v0/product/\(barcode).json"
         guard let url = URL(string: urlString) else { return }
         
-        print("Request URL: \(urlString)")  // Debugging request URL
-        
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             if let error = error {
                 DispatchQueue.main.async {
@@ -34,11 +32,6 @@ class CommodityViewModel: ObservableObject {
                 }
                 print("No data received.") // Log case when no data is received
                 return
-            }
-            
-            // Print raw response for debugging
-            if let rawString = String(data: data, encoding: .utf8) {
-                print("Raw response: \(rawString)")  // Log raw response data
             }
             
             do {
@@ -64,8 +57,9 @@ class CommodityViewModel: ObservableObject {
     
     func parseCommodity(_ productData: CommodityData) -> Commodity {
         // Default values for missing keys
+        let productName = productData.product_name ?? ""
         let nutriscoreGrade = productData.nutriscore_grade ?? ""
-        let nutriscoreScore = productData.nutriscore_score ?? 0.0
+        let nutriscoreScore = productData.nutriscore_score ?? 1000.0
 
         
         // Use a default food icon URL if no image is found
@@ -78,20 +72,18 @@ class CommodityViewModel: ObservableObject {
         ]
         
         // Initialize an empty dictionary to store the filtered nutriments
-        var nutriments: [String: String] = [:]
+        var nutriments: [String: Double] = [:]
         
         if let nutrimentData = productData.nutriments {
-            for (key, value) in nutrimentData {
-                if requiredNutrients.contains(key) {
-                    // Use getValue() to safely convert to String, regardless of the original type
-                    let nutrientValue = value.getValue()
-                    print("\(key): \(nutrientValue)")
-                    // Store the value in the dictionary
-                    nutriments[key] = nutrientValue
+            for requiredKey in requiredNutrients {
+                if let nutrientValue = nutrimentData[requiredKey] {
+                    nutriments[requiredKey] = nutrientValue
+//                } else {
+//                    nutriments[requiredKey] = -1.0
                 }
             }
         }
         
-        return Commodity(nutriscoreGrade: nutriscoreGrade, nutriscoreScore: nutriscoreScore, imageUrl: imageUrl, nutriments: nutriments)
+        return Commodity(productName: productName, nutriscoreGrade: nutriscoreGrade, nutriscoreScore: nutriscoreScore, imageUrl: imageUrl, nutriments: nutriments)
     }
 }

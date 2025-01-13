@@ -1,25 +1,22 @@
-//
-//  TestView.swift
-//  heat_up
-//
-//  Created by marat orozaliev on 11/1/2025.
-//
 import SwiftUI
 
 struct ScanView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var scannedCode: String?
-    @State private var errorMessage: String = "" // New state for error messages
+    @State private var errorMessage: String = ""
     @State private var isAlertPresented = false
+    @State private var isCommodityViewPresented = false
+    @State private var shouldRestartScanning = false // New state
+    @StateObject private var viewModel = CommodityViewModel()
 
     var body: some View {
         ZStack {
-            ScannerView(scannedCode: $scannedCode, errorMessage: $errorMessage)
+            ScannerView(scannedCode: $scannedCode, errorMessage: $errorMessage, shouldRestartScanning: $shouldRestartScanning)
                 .edgesIgnoringSafeArea(.all)
 
             VStack {
                 Spacer()
-                Text(errorMessage) // Display the error message
+                Text(errorMessage)
                     .foregroundColor(.white)
                     .padding()
                     .background(Color.black.opacity(0.7))
@@ -42,14 +39,34 @@ struct ScanView: View {
             Alert(
                 title: Text("Barcode Scanned"),
                 message: Text("Decoded Value: \(scannedCode ?? "Unknown")"),
-                dismissButton: .default(Text("OK"), action: {
-                    presentationMode.wrappedValue.dismiss()
+                dismissButton: .default(Text("Fetch Data"), action: {
+                    if let code = scannedCode {
+                        viewModel.fetchCommodityData(barcode: code)
+                    }
                 })
             )
         }
-        .onChange(of: scannedCode) { oldValue, newValue in
+        .onChange(of: scannedCode) { _, newValue in
             if newValue != nil {
                 isAlertPresented = true
+            }
+        }
+        .onReceive(viewModel.$product) { product in
+            if product != nil {
+                isCommodityViewPresented = true
+            }
+        }
+        .onReceive(viewModel.$errorMessage) { message in
+            if let message = message, !message.isEmpty {
+                errorMessage = message
+            }
+        }
+        .sheet(isPresented: $isCommodityViewPresented, onDismiss: {
+            scannedCode = nil
+            shouldRestartScanning = true // Restart scanning
+        }) {
+            if let product = viewModel.product {
+                CommodityView(commodity: product)
             }
         }
     }
@@ -66,4 +83,8 @@ struct ScanButtonView: View {
             ScanView()
         }
     }
+}
+
+#Preview {
+    ScanButtonView()
 }

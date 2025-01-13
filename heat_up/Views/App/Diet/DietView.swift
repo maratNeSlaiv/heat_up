@@ -12,7 +12,7 @@ struct DietView: View {
         NavigationView {
             VStack {
                 Spacer()
-
+                
                 NavigationLink(destination: MealFilterView()) {
                     Text("Find Meals")
                         .font(.headline)
@@ -20,6 +20,20 @@ struct DietView: View {
                         .frame(maxWidth: .infinity, minHeight: 50)
                         .background(LinearGradient(
                             gradient: Gradient(colors: [Color.green.opacity(0.7), Color.green]),
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        ))
+                        .cornerRadius(10)
+                        .padding(.horizontal, 40)
+                }
+                
+                NavigationLink(destination: ScanButtonView()) { // Add this button
+                    Text("Scan Food")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, minHeight: 50)
+                        .background(LinearGradient(
+                            gradient: Gradient(colors: [Color.blue.opacity(0.7), Color.blue]),
                             startPoint: .leading,
                             endPoint: .trailing
                         ))

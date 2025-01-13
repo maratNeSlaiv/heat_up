@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0ABAAF742D34E50500CA2472 /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 0ABAAF732D34E50500CA2472 /* AnyCodable */; };
 		0AD01B2F2D1511CB001B0DAE /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0AD01B2E2D1511CB001B0DAE /* Localizable.xcstrings */; };
 		61B9E03D63126DBB2E6B2E7D /* Pods_heat_up_heat_upUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3D31171428884F3D981904 /* Pods_heat_up_heat_upUITests.framework */; };
 		8ADA87E20E8D9F439B49F7E2 /* Pods_heat_up.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB2B50CBD215C0539DDBF63D /* Pods_heat_up.framework */; };
@@ -69,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ABAAF742D34E50500CA2472 /* AnyCodable in Frameworks */,
 				8ADA87E20E8D9F439B49F7E2 /* Pods_heat_up.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,6 +241,9 @@
 			);
 			mainGroup = 0A1835C22CF2FE1800E034C3;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0ABAAF722D34E50500CA2472 /* XCRemoteSwiftPackageReference "AnyCodable" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0A1835CC2CF2FE1800E034C3 /* Products */;
 			projectDirPath = "";
@@ -684,6 +689,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0ABAAF722D34E50500CA2472 /* XCRemoteSwiftPackageReference "AnyCodable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Flight-School/AnyCodable";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0ABAAF732D34E50500CA2472 /* AnyCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0ABAAF722D34E50500CA2472 /* XCRemoteSwiftPackageReference "AnyCodable" */;
+			productName = AnyCodable;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0A1835C32CF2FE1800E034C3 /* Project object */;
 }

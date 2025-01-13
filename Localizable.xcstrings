@@ -7,15 +7,12 @@
     "-" : {
 
     },
-    "%.1fg" : {
-
-    },
-    "%@: %@" : {
+    "%.1f %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@: %2$@"
+            "value" : "%1$.1f %2$@"
           }
         }
       }
@@ -125,13 +122,16 @@
     "Enter Title" : {
 
     },
-    "Error: %@" : {
+    "Failed to load image" : {
 
     },
     "Failed to load profile" : {
 
     },
     "Fat Intake" : {
+
+    },
+    "Fetch Data" : {
 
     },
     "File ID: %@" : {
@@ -257,19 +257,13 @@
     "No ingredients found" : {
 
     },
+    "no nutriscore info" : {
+
+    },
     "Not Provided" : {
 
     },
-    "Nutriscore Grade: %@" : {
-
-    },
-    "Nutriscore Score: %lf" : {
-
-    },
     "Nutritional Intake Tracker" : {
-
-    },
-    "OK" : {
 
     },
     "Origin: %@" : {
@@ -279,9 +273,6 @@
 
     },
     "Physical Information" : {
-
-    },
-    "Product not found." : {
 
     },
     "Protein Intake" : {
@@ -438,6 +429,9 @@
       }
     },
     "Save Changes" : {
+
+    },
+    "Scan Food" : {
 
     },
     "Search..." : {
@@ -882,6 +876,9 @@
 
     },
     "Try Again" : {
+
+    },
+    "Unknown error" : {
 
     },
     "Uploading file..." : {

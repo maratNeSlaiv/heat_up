@@ -23,7 +23,7 @@ struct NutrientScaleIconView: View {
     
     private func getTriangleOffset(for value: CGFloat) -> CGFloat {
         // Calculate the proportional position of the value within the numbers
-        let scaleRange = numbers.last! - numbers.first!
+        let _ = numbers.last! - numbers.first!
         
         // Find the normalized position of the value in the scale
         var relativePosition: CGFloat = 0
@@ -49,12 +49,20 @@ struct NutrientScaleIconView: View {
         // Calculate the corresponding position on the scale, mapped to the pipe width
         return (pipeWidth * relativePosition) / CGFloat(numbers.count - 1) - pipeWidth / 2
     }
+    
+    private func formattedNumber(_ number: CGFloat) -> String {
+            if number == floor(number) {
+                return String(format: "%.0f", number)  // Integer format
+            } else {
+                return String(format: "%.1f", number)  // One decimal point
+            }
+        }
 
     var body: some View {
         VStack {
             HStack {
                 ForEach(0..<numbers.count, id: \.self) { index in
-                    Text("\(Int(numbers[index]))")
+                    Text(formattedNumber(numbers[index]))
                         .font(.system(size: pipeWidth / 30))
                         .frame(width: pipeWidth / CGFloat(numbers.count), alignment: .center)
                 }
@@ -73,7 +81,7 @@ struct NutrientScaleIconView: View {
 
             // Triangle pointing to the specified value
             // Triangle pointing to the specified value
-            ScalePointingTriangle()
+            NutrientScalePointingTriangle()
                 .fill(colorForValue(value))
                 .frame(width: pipeWidth / 30, height: pipeWidth / 30)
                 .offset(x: getTriangleOffset(for: value), y: 5)
@@ -81,7 +89,7 @@ struct NutrientScaleIconView: View {
     }
 }
 
-struct ScalePointingTriangle: Shape {
+struct NutrientScalePointingTriangle: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: CGPoint(x: rect.midX, y: rect.minY)) // Top of the triangle
@@ -92,11 +100,11 @@ struct ScalePointingTriangle: Shape {
     }
 }
 
-struct ScaleIconView_Previews: PreviewProvider {
+struct NutrientScaleIconView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             // Example of user-defined numbers and colors
-            NutrientScaleIconView(pipeWidth: 300, value: 25, numbers: [0, 25, 50, 75, 100], colors: [.green, .yellow, .orange, .red])
+            NutrientScaleIconView(pipeWidth: 300, value: 25, numbers: [0, 25.1, 50, 75.6, 100], colors: [.green, .yellow, .orange, .red])
         }
     }
 }

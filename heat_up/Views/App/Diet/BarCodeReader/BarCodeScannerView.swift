@@ -9,7 +9,8 @@ import AVFoundation
 
 struct ScannerView: UIViewControllerRepresentable {
     @Binding var scannedCode: String?
-    @Binding var errorMessage: String // New binding for the error message
+    @Binding var errorMessage: String
+    @Binding var shouldRestartScanning: Bool // New binding
 
     func makeUIViewController(context: Context) -> ScannerViewController {
         let viewController = ScannerViewController()
@@ -22,7 +23,12 @@ struct ScannerView: UIViewControllerRepresentable {
         return viewController
     }
 
-    func updateUIViewController(_ uiViewController: ScannerViewController, context: Context) {}
+    func updateUIViewController(_ uiViewController: ScannerViewController, context: Context) {
+        if shouldRestartScanning {
+            uiViewController.restartScanning()
+            shouldRestartScanning = false // Reset after restarting
+        }
+    }
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -41,7 +47,6 @@ struct ScannerView: UIViewControllerRepresentable {
     }
 }
 
-
 protocol ScannerViewControllerDelegate: AnyObject {
     func didFindCode(_ code: String)
 }
@@ -50,8 +55,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     weak var delegate: ScannerViewControllerDelegate?
-
-    // Callback for error messages
     var errorMessageCallback: ((String) -> Void)?
 
     override func viewDidLoad() {
@@ -109,15 +112,23 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject,
                   let stringValue = readableObject.stringValue else {
-                errorMessageCallback?("No valid barcode detected, continuing to scan...") // Update error message
+                errorMessageCallback?("No valid barcode detected, continuing to scan...")
                 return
             }
-            
+
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             delegate?.didFindCode(stringValue)
             captureSession.stopRunning()
         } else {
-            errorMessageCallback?("No valid barcode detected, continuing to scan...") // Update error message
+            errorMessageCallback?("No valid barcode detected, continuing to scan...")
+        }
+    }
+
+    func restartScanning() {
+        if !captureSession.isRunning {
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.captureSession.startRunning()
+            }
         }
     }
 
