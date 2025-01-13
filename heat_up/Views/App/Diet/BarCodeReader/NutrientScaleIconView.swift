@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ScaleIconView: View {
+struct NutrientScaleIconView: View {
     var pipeWidth: CGFloat
     var value: CGFloat
     var numbers: [CGFloat] // User-defined numbers
@@ -96,7 +96,7 @@ struct ScaleIconView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             // Example of user-defined numbers and colors
-            ScaleIconView(pipeWidth: 300, value: 25, numbers: [0, 25, 50, 75, 100], colors: [.green, .yellow, .orange, .red])
+            NutrientScaleIconView(pipeWidth: 300, value: 25, numbers: [0, 25, 50, 75, 100], colors: [.green, .yellow, .orange, .red])
         }
     }
 }
